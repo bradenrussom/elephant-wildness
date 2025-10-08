@@ -1,6 +1,3 @@
-# modules/__init__.py
-"""Processing modules for MVP Standards Checker"""
-
-from .communications_standards import CommunicationsStandardsProcessor
+"""Processing modules for Standards Checker"""
 
 __all__ = ['CommunicationsStandardsProcessor']
