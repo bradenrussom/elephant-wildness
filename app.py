@@ -1,7 +1,11 @@
 """
-MVP Standards Checker - Streamlit App
-Simple interface for processing Word documents with MVP standards
+elephant-wildness - Streamlit App
+Simple interface for processing Word documents with standards
 """
+
+import sys
+import os
+sys.path.insert(0, os.path.dirname(__file__))
 
 import streamlit as st
 import os
@@ -15,7 +19,7 @@ from modules.communications_standards import CommunicationsStandardsProcessor
 
 # Page config
 st.set_page_config(
-    page_title="MVP Standards Checker",
+    page_title="Copy Standards Checker",
     page_icon="📝",
     layout="wide"
 )
@@ -55,8 +59,8 @@ st.markdown("""
 
 
 def main():
-    st.markdown('<div class="main-header">📝 MVP Standards Checker</div>', unsafe_allow_html=True)
-    st.markdown("Automatically apply MVP Communications Standards to Word documents")
+    st.markdown('<div class="main-header">📝 Standards Checker</div>', unsafe_allow_html=True)
+    st.markdown("Automatically apply Communications Standards to Word documents")
     
     # Sidebar
     with st.sidebar:
