@@ -1,0 +1,163 @@
+# MVP Standards Checker Configuration
+
+# ============================================================================
+# MODULE 3: MVP COMMUNICATIONS STANDARDS (Starting with easy automated rules)
+# ============================================================================
+communications_standards:
+  
+  # State Abbreviations - AUTOMATED
+  state_abbreviations:
+    enabled: true
+    uppercase: true
+    no_periods: true
+    replacements:
+      - pattern: 'N\.Y\.'
+        correct: 'NY'
+      - pattern: 'V\.T\.'
+        correct: 'VT'
+      - pattern: 'C\.T\.'
+        correct: 'CT'
+  
+  # Punctuation - AUTOMATED
+  punctuation:
+    no_ampersands:
+      enabled: true
+      replace_with: 'and'
+      exceptions: ['R&D']  # Don't replace in these contexts
+    
+    single_spaces:
+      enabled: true
+    
+    em_dashes:
+      enabled: true
+      no_spaces: true
+    
+    en_dashes:
+      enabled: true
+      no_spaces: true
+      use_for: 'ranges'
+  
+  # Digital Terminology - AUTOMATED
+  digital_terms:
+    enabled: true
+    replacements:
+      - wrong: 'healthcare'
+        correct: 'health care'
+      - wrong: 'telehealth'
+        correct: 'virtual care'
+      - wrong: 'telemedicine'
+        correct: 'virtual care'
+      - wrong: 'log in'
+        correct: 'sign in'
+        context: 'member_communications'
+      - wrong: 'log into'
+        correct: 'sign into'
+      - wrong: 'logged in'
+        correct: 'signed in'
+  
+  # Times - AUTOMATED
+  times:
+    enabled: true
+    lowercase_ampm: true
+    no_spaces: true
+    no_periods: true
+    remove_00_minutes: true
+    range_en_dash: true
+  
+  # Numbers - AUTOMATED
+  numbers:
+    enabled: true
+    spell_out:
+      range: [1, 9]
+      exclusions:
+        - 'with_measures'  # Don't spell out "5 feet"
+        - 'percentages'    # Don't spell out "5%"
+        - 'currency'       # Don't spell out "$5"
+        - 'years'          # Don't spell out "2025"
+        - 'phone_numbers'  # Don't spell out phone digits
+    
+    add_commas:
+      enabled: true
+      threshold: 1000
+      exclusions:
+        - 'years'
+        - 'phone_numbers'
+  
+  # Health Care Terminology - AUTOMATED
+  healthcare_terms:
+    enabled: true
+    replacements:
+      - wrong: 'preventative'
+        correct: 'preventive'
+  
+  # Branding - AUTOMATED
+  branding:
+    enabled: true
+    mvp_terminology:
+      - pattern: 'MVP Health Care plan'
+        correct: 'MVP Health Care plans'
+    
+    gia_platform:
+      enabled: true
+      first_mention_symbol: '®'
+      symbol_applies_to: 'Gia'
+
+# ============================================================================
+# SHARED SETTINGS
+# ============================================================================
+shared:
+  # Document sections
+  document_sections:
+    page_copy:
+      start_marker: 'start_page_copy'
+      end_marker: 'end_page_copy'
+    
+    disclaimer:
+      start_marker: 'start_disclaimer'
+      end_marker: 'end_disclaimer'
+  
+  # Content protection
+  protection:
+    preserve_urls: true
+    preserve_bracketed: true  # [like this]
+    preserve_angle_brackets: true  # <like-this>
+  
+  # Medicare compliance
+  medicare_compliance:
+    enabled: false  # User toggles this
+    requires:
+      - cms_code
+      - tty_711
+
+# ============================================================================
+# ANALYSIS & REPORTING
+# ============================================================================
+analysis:
+  # Text metrics
+  text_metrics:
+    enabled: true
+    calculate:
+      - word_count
+      - sentence_count
+      - paragraph_count
+      - reading_level
+  
+  # Reading level targets
+  reading_level:
+    default_target: 8.0
+    
+  # Word count targets
+  word_count:
+    conversion_page: 100
+    seo_page_min: 500
+    seo_page_max: 800
+  
+  # SEO analysis
+  seo:
+    enabled: true
+    keyword_density:
+      min: 3
+      max: 4
+    internal_links:
+      min: 3
+      max: 8
