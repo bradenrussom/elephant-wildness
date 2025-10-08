@@ -21,7 +21,18 @@ class TextAnalyzer:
         self.text = text
         self._words = None
         self._sentences = None
-    
+        
+    def get_document_stats(self) -> Dict[str, int]:
+        """
+        Get basic document statistics
+        
+        Returns:
+            Dictionary with word_count and sentence_count
+        """
+        return {
+            'word_count': self.word_count(),
+            'sentence_count': self.sentence_count()
+        }
     @property
     def words(self) -> List[str]:
         """Get list of words (cached)"""
