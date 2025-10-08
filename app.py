@@ -20,7 +20,7 @@ from modules.communications_standards import CommunicationsStandardsProcessor
 # Page config
 st.set_page_config(
     page_title="Copy Standards Checker",
-    page_icon="📝",
+    page_icon="🐘",
     layout="wide"
 )
 
