@@ -106,17 +106,6 @@ def main():
         st.info("More modules coming soon:\n- Digital Standards\n- Content Proofing\n- Brand Standards")
     
         st.divider()
-
-        # Medicare compliance
-        st.subheader("Medicare Compliance")
-        is_medicare = st.checkbox(
-            "This is a Medicare document",
-            value=False,
-            help="Enables CMS code and TTY 711 checking"
-        )
-
-if is_medicare:
-    st.info("✓ Will check for:\n- CMS code in disclaimer\n- TTY 711 with phone numbers")
     
     # Main content
     col1, col2 = st.columns([2, 1])
@@ -150,6 +139,13 @@ if is_medicare:
                 doc_processor = DocumentProcessor(tmp_path)
                 text = doc_processor.get_all_text('page_copy')
                 analyzer = TextAnalyzer(text)
+                
+            # Medicare compliance option
+                is_medicare = st.checkbox(
+                "This is a Medicare document",
+                value=False,
+                help="Enables CMS code and TTY 711 checking"
+            )
             
             # Display current stats
             st.header("📊 Document Analysis")
