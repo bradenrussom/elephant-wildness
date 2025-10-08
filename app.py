@@ -105,6 +105,19 @@ def main():
         
         st.info("More modules coming soon:\n- Digital Standards\n- Content Proofing\n- Brand Standards")
     
+        st.divider()
+
+        # Medicare compliance
+        st.subheader("Medicare Compliance")
+        is_medicare = st.checkbox(
+            "This is a Medicare document",
+            value=False,
+            help="Enables CMS code and TTY 711 checking"
+        )
+
+if is_medicare:
+    st.info("✓ Will check for:\n- CMS code in disclaimer\n- TTY 711 with phone numbers")
+    
     # Main content
     col1, col2 = st.columns([2, 1])
     
@@ -236,7 +249,7 @@ def main():
                             total_corrections = 0
                             
                             if apply_comms:
-                                comms_processor = CommunicationsStandardsProcessor(doc_processor)
+                                comms_processor = CommunicationsStandardsProcessor(doc_processor, is_medicare=is_medicare)
                                 corrections_count = comms_processor.process()
                                 total_corrections += corrections_count
                                 

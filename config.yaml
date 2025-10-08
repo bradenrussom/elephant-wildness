@@ -54,6 +54,10 @@ communications_standards:
         correct: 'sign into'
       - wrong: 'logged in'
         correct: 'signed in'
+      - wrong: 'log in to'
+        correct: 'sign into'
+      - wrong: 'sign in to'
+        correct: 'sign into'
   
   # Times - AUTOMATED
   times:
@@ -94,8 +98,8 @@ communications_standards:
   branding:
     enabled: true
     mvp_terminology:
-      - pattern: 'MVP Health Care plan'
-        correct: 'MVP Health Care plans'
+      - pattern: 'MVP Healthcare'
+        correct: 'MVP Health Care'
     
     gia_platform:
       enabled: true

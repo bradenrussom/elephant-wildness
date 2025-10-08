@@ -2,10 +2,10 @@
 Communications Standards Module
 Applies MVP Communications Standards automated rules
 """
-
 import re
 import sys
 import os
+from collections import defaultdict
 
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -21,16 +21,17 @@ from core.utils import (
 class CommunicationsStandardsProcessor:
     """Applies MVP Communications Standards"""
     
-    def __init__(self, doc_processor: DocumentProcessor, config: dict = None):
+    def __init__(self, doc_processor, is_medicare=False):
         """
         Initialize the processor
         
         Args:
             doc_processor: DocumentProcessor instance with loaded document
-            config: Optional config dict (will load if None)
+            is_medicare: Whether this is a Medicare document (enables compliance checks)
         """
         self.doc_processor = doc_processor
-        self.config = config or load_config()
+        self.is_medicare = is_medicare
+        self.config = load_config()
         self.module_config = get_module_config('communications_standards', self.config)
         self.corrections = []
     
@@ -333,7 +334,7 @@ if __name__ == '__main__':
     doc_proc = DocumentProcessor('test.docx')
     
     # Apply communications standards
-    comms_proc = CommunicationsStandardsProcessor(doc_proc)
+    comms_proc = CommunicationsStandardsProcessor(doc_proc, is_medicare=False)
     count = comms_proc.process()
     
     print(f"Applied {count} corrections")
